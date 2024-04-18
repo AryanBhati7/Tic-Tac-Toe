@@ -1,4 +1,4 @@
-# Tic-Tac-Toe Game🔐
+# Tic-Tac-Toe Game 🎮
 
 This project consists of the famous Tic-Tac-Toe. I made this project to brush up my JavaScript Skills. 💻
 
