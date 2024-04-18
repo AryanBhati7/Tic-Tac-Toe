@@ -184,21 +184,26 @@ document.addEventListener("DOMContentLoaded", function () {
         icon = "img/lose.gif";
       }
     }
-    swal(message, {
-      icon: icon,
-      buttons: {
-        NewGame: "Start New Game",
-      },
-    }).then((value) => {
-      switch (value) {
-        case "Home":
-          window.location.href = "http://www.google.com";
-          break;
 
-        case "NewGame":
-          resetGame();
-          break;
-      }
-    });
+    setTimeout(() => {
+      swal(message, {
+        icon: icon,
+        buttons: {
+          NewGame: "Start New Game",
+        },
+        closeOnClickOutside: false,
+        closeOnEsc: false,
+      }).then((value) => {
+        switch (value) {
+          case "Home":
+            window.location.href = "http://www.google.com";
+            break;
+
+          case "NewGame":
+            resetGame();
+            break;
+        }
+      });
+    }, 300);
   }
 });

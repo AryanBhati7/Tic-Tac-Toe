@@ -4,6 +4,7 @@
   box-sizing: border-box;
 }
 body {
+  overflow: hidden;
   margin-top: 20px;
   text-align: center;
   font-family: "Roboto", sans-serif;
@@ -11,6 +12,7 @@ body {
 }
 
 header {
+  font-size: 1.5rem;
   color: white;
   padding: 10px 0;
   text-shadow: 0 0 7px #ff4545, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #20b5ff,
@@ -28,10 +30,11 @@ footer {
 .container {
   padding: 20%;
   width: 100vw;
+  height: 70vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 70vh;
+  gap: 20px;
   background: linear-gradient(to right, #0c0d42, #450487);
 }
 
@@ -43,7 +46,7 @@ footer {
   justify-content: center;
   align-items: center;
   gap: 5px;
-  margin-left: 7rem;
+  margin-left: 8rem;
 }
 
 .game-board .box {
@@ -55,7 +58,7 @@ footer {
   border: 5px solid white;
   height: 23vmin;
   width: 23vmin;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px 0 rgb(255, 84, 17);
   font-size: 10rem;
   text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #20b5ff,
     0 0 82px #20b5ff, 0 0 92px #20b5ff, 0 0 102px #20b5ff, 0 0 151px #20b5ff;
@@ -72,7 +75,7 @@ footer {
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 1.2rem;
   margin: 4px 2px;
   cursor: pointer;
   transition-duration: 0.4s;
@@ -81,4 +84,60 @@ footer {
 
 #reset-btn:hover {
   background: linear-gradient(to right, #a64dff, #a4a6ff);
+}
+/* Sweet Alert CSS */
+.swal-overlay {
+  background-color: rgba(62, 32, 132, 0.45);
+  backdrop-filter: blur(5px);
+}
+.swal-modal {
+  background-color: rgba(154, 189, 255, 0.69);
+  border: 3px solid white;
+  color: white;
+}
+.swal-text {
+  color: #ffffff;
+  font-weight: 800;
+  font-size: large;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.swal-button {
+  background-color: #8417f1;
+  position: relative;
+  right: 85%;
+  border: 2px solid #f2f5ff;
+}
+
+@media (max-width: 1024px) {
+  body {
+    overflow: auto;
+  }
+  header {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+  }
+  .container {
+    padding: 5%;
+    flex-direction: column;
+  }
+
+  .game-board {
+    width: 100vw;
+    margin-left: 0;
+  }
+
+  .game-board .box {
+    height: 30vmin;
+    width: 30vmin;
+    font-size: 6rem;
+  }
+  .swal-button {
+    background-color: #8417f1;
+    border: 2px solid #f2f5ff;
+    position: relative;
+    right: 42%;
+  }
+  footer {
+    position: static; /* Change the position */
+  }
 }
