@@ -12,21 +12,18 @@ document.addEventListener("DOMContentLoaded", function () {
   resetButton.addEventListener("click", resetGame);
 
   function boxClick() {
-    this.style.color = "darkred";
-
     if (gameOver || this.textContent !== "") return;
     this.textContent = currPlayer;
+    this.style.color = currPlayer === "X" ? "darkred" : "black";
 
     if (checkWin()) {
       gameOver = true;
-      swal(`Player ${currPlayer} wins!`);
+      popUP(currPlayer);
       return;
     }
     if (checkTie()) {
       gameOver = true;
-      swal("Game Tied", {
-        buttons: ["Close", "Start a New Game"],
-      });
+      popUP(currPlayer, true);
       return;
     }
     currPlayer = currPlayer === "X" ? "O" : "X";
@@ -93,23 +90,26 @@ document.addEventListener("DOMContentLoaded", function () {
     // Check if there's a winning move
     for (let box of emptyBoxes) {
       box.textContent = currPlayer;
+      box.style.color = currPlayer === "X" ? "darkred" : "black";
       if (checkWin()) {
         gameOver = true;
-        swal(`Player ${currPlayer} wins!`);
-        markWinningBoxes();
+        markWinningBoxes(), 1000;
+        popUP(currPlayer);
         return;
       }
+
       box.textContent = "";
     }
 
     // Check if the player is about to win and block it
     for (let box of emptyBoxes) {
       box.textContent = currPlayer === "X" ? "O" : "X";
+      box.style.color = currPlayer === "X" ? "darkred" : "black";
       if (checkWin()) {
         box.textContent = currPlayer;
         if (checkTie()) {
           gameOver = true;
-          swal("It's a Tie");
+          popUP(currPlayer, true);
           return;
         }
         currPlayer = "X";
@@ -121,14 +121,17 @@ document.addEventListener("DOMContentLoaded", function () {
     // If there's no winning or blocking move, take a random box
     const randomBox = emptyBoxes[Math.floor(Math.random() * emptyBoxes.length)];
     randomBox.textContent = currPlayer;
+    randomBox.style.color = currPlayer === "X" ? "darkred" : "black";
     if (checkWin()) {
       gameOver = true;
-      swal(`Player ${currPlayer} wins!`);
+      popUP(currPlayer);
+      // swal(`Player ${currPlayer} wins!`);
+      markWinningBoxes();
       return;
     }
     if (checkTie()) {
       gameOver = true;
-      swal("It's a Tie");
+      popUP(currPlayer, true);
       return;
     }
     currPlayer = "X";
@@ -136,6 +139,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function resetGame() {
     boxes.forEach((box) => {
       box.textContent = "";
+      box.classList.remove("winning-box");
     });
     currentPlayer = "X";
     gameOver = false;
@@ -165,5 +169,37 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
     }
+  }
+  function popUP(Player, isTie) {
+    let message, icon;
+    if (isTie == true) {
+      message = "It's a Tie";
+      icon = "tie.gif";
+    } else {
+      if (Player === "X") {
+        message = "Player - X i.e You Won";
+        icon = "win.gif";
+      } else {
+        message = "Player - O i.e Computer Won";
+        icon = "lose.gif";
+      }
+    }
+    swal(message, {
+      icon: icon,
+      buttons: {
+        Home: "Home",
+        NewGame: "Start New Game",
+      },
+    }).then((value) => {
+      switch (value) {
+        case "Home":
+          window.location.href = "http://www.google.com";
+          break;
+
+        case "NewGame":
+          resetGame();
+          break;
+      }
+    });
   }
 });
