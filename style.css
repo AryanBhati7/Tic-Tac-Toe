@@ -108,7 +108,7 @@ footer {
   border: 2px solid #f2f5ff;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 915px) {
   body {
     overflow: auto;
   }
@@ -139,5 +139,29 @@ footer {
   }
   footer {
     position: static; /* Change the position */
+  }
+}
+@media (min-width: 915px) and (max-width: 1366px) {
+  body {
+    overflow: auto;
+  }
+  .container {
+    padding: 10%;
+    height: 80vh;
+    flex-direction: column;
+  }
+
+  .game-board {
+    margin-top: 40px;
+    width: 70vw;
+    margin-left: 0;
+  }
+
+  .game-board .box {
+    height: 25vmin;
+    width: 25vmin;
+  }
+  footer {
+    position: static;
   }
 }
