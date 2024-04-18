@@ -174,20 +174,19 @@ document.addEventListener("DOMContentLoaded", function () {
     let message, icon;
     if (isTie == true) {
       message = "It's a Tie";
-      icon = "tie.gif";
+      icon = "img/tie.gif";
     } else {
       if (Player === "X") {
         message = "Player - X i.e You Won";
-        icon = "win.gif";
+        icon = "img/win.gif";
       } else {
         message = "Player - O i.e Computer Won";
-        icon = "lose.gif";
+        icon = "img/lose.gif";
       }
     }
     swal(message, {
       icon: icon,
       buttons: {
-        Home: "Home",
         NewGame: "Start New Game",
       },
     }).then((value) => {
