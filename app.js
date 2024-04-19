@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
       box.textContent = "";
       box.classList.remove("winning-box");
     });
-    currentPlayer = "X";
+    currPlayer = "X";
     gameOver = false;
   }
 
